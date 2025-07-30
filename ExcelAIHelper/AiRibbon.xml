@@ -1,0 +1,12 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="tabAi" label="AI 助手">
+        <group id="grpMain" label="AI Tools">
+          <button id="btnChatPane" label="AI Chat" size="large" onAction="OnChatPaneClick" imageMso="Chat" />
+          <button id="btnApi" label="API 设置" size="large" onAction="OnApiClick" imageMso="DatabaseSet" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

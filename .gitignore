@@ -1,0 +1,20 @@
+# VS项目
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+
+# VSTO相关
+*.vsto
+
+# 其他可能需要忽略的文件
+*.log
+*.tmp
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
