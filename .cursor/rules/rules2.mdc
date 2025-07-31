@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+---
+# Cursor Coding Rules for ExcelAIHelper
+每次聊天结束需要生成一个文档，名称要带上时间具体到分钟，总结聊天，放到J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\docs
+并且每次聊天开始要读取上一次的聊天总结文档。
+每次修改代码要考虑到整体联调性，考虑修改时会不会损坏与其他代码的连调性，会不会影响功能，这些状况要分析然后避免采取最优方案
+
+假设涉及到开发过程中有关核心交互逻辑(涉及到开发「用户→AI→Excel 执行」 ).md，请参考J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\docs\核心交互逻辑(涉及到开发「用户→AI→Excel 执行」 ).md
+## 0. 基本约定
+- **语言**：代码用 C#，注释/commit 信息用英文；README/Docs 用中英皆可。
+- **框架**：统一 .NET Framework 4.7.2；禁止擅自升级或切到 .NET Core。
+- **命名空间**：全部置于 `ExcelAIHelper.*`；禁止出现默认 `WindowsFormsApp1` 之类。
+
+
+
+## 2. 代码规范
+- **Async All The Way**：公开 API 一律返回 `Task`；更改 UI 时用 `await ExcelApp.RunAsync(...)`.
+- **嵌入资源**：新增 Ribbon XML 或模板文件，务必 `Embedded Resource` 并在 `CreateRibbonExtensibilityObject` 注册。
+- **日志**：使用 `Serilog`（已在 packages）——不要 `Console.WriteLine`.
+- **异常**：自定义 `AiOperationException`，向 UI 冒泡再显示 MessageBox。
+
+## 3. 单元测试
+- 所有新业务逻辑必须附带 UT (`*.Tests` 项目)；覆盖率 ≥ 80%。
+- Mock Excel 依赖 `NetOfficeFw.XlMock`；不得直接启动真实 Excel 进程做 UT。
+
+## 4. 文档
+- 变更架构或公共接口，**同步更新** `docs/architecture.md` 或 `docs/ai_json_schema.md`。
+- 所有公开类需 XMLDoc；公开方法简要说明参数/返回/异常。
+
+## 5. 交互式指令开发流程
+1. ChatPane 发送用户文本后，调用 `PromptBuilder.Build`.
+2. `DeepSeekClient.AskAsync` 返回 JSON → `InstructionParser.Parse`.
+3. `OperationDispatcher.ApplyAsync` 首先 `dryRun=true` → ChatPane 预览高亮。
+4. 用户确认后再执行 `dryRun=false`；异常进入 `UndoManager.Rollback`.
+
+## 6. “完成度” 定义
+- 功能 PR 接受标准：**编译通过 + 单元测试通过 + 手工 F5 看到效果**。
+- 若影响 UI/UX，需附 GIF 或截图。
+
+
+

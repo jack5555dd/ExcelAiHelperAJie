@@ -109,19 +109,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -210,20 +203,9 @@
     <Compile Include="ChatPaneControl.Designer.cs">
       <DependentUpon>ChatPaneControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Exceptions\AiOperationException.cs" />
-    <Compile Include="Globals.cs" />
-    <Compile Include="Models\ExcelContext.cs" />
-    <Compile Include="Models\Instruction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Services\ContextManager.cs" />
-    <Compile Include="Services\DeepSeekClient.cs" />
-    <Compile Include="Services\ExcelOperationEngine.cs" />
-    <Compile Include="Services\InstructionParser.cs" />
-    <Compile Include="Services\NetworkDiagnostics.cs" />
-    <Compile Include="Services\OperationDispatcher.cs" />
-    <Compile Include="Services\PromptBuilder.cs" />
     <EmbeddedResource Include="ApiSettingsForm.resx">
       <DependentUpon>ApiSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +230,12 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon1.Designer.cs">
+      <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

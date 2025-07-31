@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
@@ -13,22 +14,49 @@ namespace ExcelAIHelper
     public partial class ThisAddIn
     {
         internal static CustomTaskPane ChatPane;
+        
+        // Application property is already provided by the base class
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            var chatControl = new ChatPaneControl();
-            ChatPane = this.CustomTaskPanes.Add(chatControl, "AI Chat");
-            ChatPane.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionRight; // 右侧
-            ChatPane.Visible = false;   // 初始隐藏
+            try
+            {
+                // Configure SSL/TLS settings globally for the application
+                // This is required for HTTPS connections to modern APIs
+                System.Net.ServicePointManager.SecurityProtocol = 
+                    System.Net.SecurityProtocolType.Tls12 | 
+                    System.Net.SecurityProtocolType.Tls11 | 
+                    System.Net.SecurityProtocolType.Tls;
+                
+                // Set connection limits for better performance
+                System.Net.ServicePointManager.DefaultConnectionLimit = 10;
+                
+                System.Diagnostics.Debug.WriteLine("SSL/TLS configuration applied: " + 
+                    System.Net.ServicePointManager.SecurityProtocol.ToString());
+                
+                // Create chat pane
+                var chatControl = new ChatPaneControl();
+                ChatPane = this.CustomTaskPanes.Add(chatControl, "AI Chat");
+                ChatPane.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionRight; // 右侧
+                ChatPane.Visible = false;   // 初始隐藏
+                
+                System.Diagnostics.Debug.WriteLine("Excel AI Helper started successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"启动失败: {ex.Message}", "Excel AI Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Diagnostics.Debug.WriteLine($"Failed to start Excel AI Helper: {ex.Message}");
+            }
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Excel AI Helper shutting down");
         }
 
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            return new AiRibbon();   // 告诉 VSTO 用这个类
+            return new AiRibbon();
         }
 
         #region VSTO 生成的代码

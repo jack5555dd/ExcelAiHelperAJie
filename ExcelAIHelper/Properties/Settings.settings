@@ -7,5 +7,17 @@
     <Setting Name="ApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ApiEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.deepseek.com</Value>
+    </Setting>
+    <Setting Name="SelectedModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">deepseek-chat</Value>
+    </Setting>
+    <Setting Name="Temperature" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.7</Value>
+    </Setting>
+    <Setting Name="MaxTokens" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2048</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
