@@ -13,11 +13,14 @@ namespace ExcelAIHelper.Services
     /// </summary>
     public class InstructionParser
     {
+        private readonly JsonCommandValidator _validator;
+        
         /// <summary>
         /// Creates a new instance of InstructionParser
         /// </summary>
         public InstructionParser()
         {
+            _validator = JsonCommandValidator.Instance;
         }
         
         /// <summary>

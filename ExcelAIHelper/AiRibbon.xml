@@ -2,9 +2,54 @@
   <ribbon>
     <tabs>
       <tab id="tabAi" label="AI 助手">
-        <group id="grpMain" label="AI Tools">
-          <button id="btnChatPane" label="AI Chat" size="large" onAction="OnChatPaneClick" imageMso="Chat" />
-          <button id="btnApi" label="API 设置" size="large" onAction="OnApiClick" imageMso="DatabaseSet" />
+        <!-- 右侧面板组 -->
+        <group id="grpPanel" label="面板">
+          <button id="btnChatPane" label="AI 聊天" size="large" onAction="OnChatPaneClick" imageMso="Chat" />
+        </group>
+        
+        <!-- 工具箱组 -->
+        <group id="grpToolbox" label="工具箱">
+          <menu id="menuToolbox" label="工具箱" size="large" imageMso="ToolsOptions">
+            <menu id="menuDataTools" label="数据工具">
+              <button id="btnDataAnalysis" label="数据分析" onAction="OnDataAnalysisClick" imageMso="ChartInsert" />
+              <button id="btnDataClean" label="数据清洗" onAction="OnDataCleanClick" imageMso="TableStyleMedium9" />
+              <button id="btnDataImport" label="数据导入" onAction="OnDataImportClick" imageMso="ImportExcel" />
+            </menu>
+            <menu id="menuFormatTools" label="格式工具">
+              <button id="btnAutoFormat" label="智能格式化" onAction="OnAutoFormatClick" imageMso="ConditionalFormattingMenu" />
+              <button id="btnStyleApply" label="样式应用" onAction="OnStyleApplyClick" imageMso="FormatPainter" />
+              <button id="btnTableFormat" label="表格美化" onAction="OnTableFormatClick" imageMso="TableStylesGallery" />
+            </menu>
+            <menu id="menuFormulaTools" label="公式工具">
+              <button id="btnFormulaHelper" label="公式助手" onAction="OnFormulaHelperClick" imageMso="FunctionWizard" />
+              <button id="btnFormulaCheck" label="公式检查" onAction="OnFormulaCheckClick" imageMso="FormulaAuditing" />
+              <button id="btnFormulaOptimize" label="公式优化" onAction="OnFormulaOptimizeClick" imageMso="Calculate" />
+            </menu>
+          </menu>
+        </group>
+        
+        <!-- 聚光灯组 -->
+        <group id="grpSpotlight" label="聚光灯">
+          <splitButton id="splitSpotlight" size="large">
+            <button id="btnSpotlight" label="聚光灯" onAction="OnSpotlightClick" imageMso="Spotlight" />
+            <menu id="menuSpotlight">
+              <button id="btnSpotlightOff" label="关闭聚光灯" onAction="OnSpotlightOffClick" imageMso="LightBulbOff" />
+              <menuSeparator id="sepSpotlight1" />
+              <button id="btnSpotlightYellow" label="黄色聚光" onAction="OnSpotlightYellowClick" imageMso="AccentColor1" />
+              <button id="btnSpotlightBlue" label="蓝色聚光" onAction="OnSpotlightBlueClick" imageMso="AccentColor2" />
+              <button id="btnSpotlightGreen" label="绿色聚光" onAction="OnSpotlightGreenClick" imageMso="AccentColor3" />
+              <button id="btnSpotlightRed" label="红色聚光" onAction="OnSpotlightRedClick" imageMso="AccentColor4" />
+              <menuSeparator id="sepSpotlight2" />
+              <button id="btnSpotlightCustom" label="自定义颜色" onAction="OnSpotlightCustomClick" imageMso="ColorPicker" />
+            </menu>
+          </splitButton>
+        </group>
+        
+        <!-- 设置和帮助组 -->
+        <group id="grpSettings" label="设置">
+          <button id="btnSettings" label="设置" size="large" onAction="OnSettingsClick" imageMso="Options" />
+          <button id="btnExamples" label="示例" size="large" onAction="OnExamplesClick" imageMso="Help" />
+          <button id="btnAbout" label="关于" size="large" onAction="OnAboutClick" imageMso="Info" />
         </group>
       </tab>
     </tabs>

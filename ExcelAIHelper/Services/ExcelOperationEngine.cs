@@ -388,6 +388,61 @@ namespace ExcelAIHelper.Services
                     }
                 }
             }
+            else if (formula.Equals("=AVERAGE()", StringComparison.OrdinalIgnoreCase))
+            {
+                // Try to intelligently determine AVERAGE range based on context
+                string suggestedRange = GetSuggestedSumRange(targetRange);
+                if (!string.IsNullOrEmpty(suggestedRange))
+                {
+                    formula = $"=AVERAGE({suggestedRange})";
+                    System.Diagnostics.Debug.WriteLine($"Improved AVERAGE formula: {formula}");
+                }
+                else
+                {
+                    // Default to a simple range above the current cell
+                    string cellAddress = targetRange.Address.Replace("$", "");
+                    var match = System.Text.RegularExpressions.Regex.Match(cellAddress, @"([A-Z]+)(\d+)");
+                    if (match.Success)
+                    {
+                        string column = match.Groups[1].Value;
+                        int row = int.Parse(match.Groups[2].Value);
+                        if (row > 1)
+                        {
+                            formula = $"=AVERAGE({column}1:{column}{row - 1})";
+                            System.Diagnostics.Debug.WriteLine($"Default AVERAGE formula: {formula}");
+                        }
+                    }
+                }
+            }
+            else if (formula.Equals("=MAX()", StringComparison.OrdinalIgnoreCase) || 
+                     formula.Equals("=MIN()", StringComparison.OrdinalIgnoreCase) ||
+                     formula.Equals("=COUNT()", StringComparison.OrdinalIgnoreCase))
+            {
+                // Handle other common empty formulas
+                string functionName = formula.Substring(1, formula.Length - 3); // Remove = and ()
+                string suggestedRange = GetSuggestedSumRange(targetRange);
+                if (!string.IsNullOrEmpty(suggestedRange))
+                {
+                    formula = $"={functionName}({suggestedRange})";
+                    System.Diagnostics.Debug.WriteLine($"Improved {functionName} formula: {formula}");
+                }
+                else
+                {
+                    // Default to a simple range above the current cell
+                    string cellAddress = targetRange.Address.Replace("$", "");
+                    var match = System.Text.RegularExpressions.Regex.Match(cellAddress, @"([A-Z]+)(\d+)");
+                    if (match.Success)
+                    {
+                        string column = match.Groups[1].Value;
+                        int row = int.Parse(match.Groups[2].Value);
+                        if (row > 1)
+                        {
+                            formula = $"={functionName}({column}1:{column}{row - 1})";
+                            System.Diagnostics.Debug.WriteLine($"Default {functionName} formula: {formula}");
+                        }
+                    }
+                }
+            }
 
             return formula;
         }
@@ -542,7 +597,7 @@ namespace ExcelAIHelper.Services
                     }
                     
                     // Clear clipboard
-                    _excelApp.CutCopyMode = false;
+                    _excelApp.CutCopyMode = (Excel.XlCutCopyMode)0;
                 }
                 catch (Exception ex)
                 {
