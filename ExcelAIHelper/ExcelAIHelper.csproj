@@ -247,6 +247,7 @@
     <Compile Include="Services\OperationDispatcher.cs" />
     <Compile Include="Services\PromptBuilder.cs" />
     <Compile Include="Services\CommandExecutionEngine.cs" />
+    <Compile Include="SpotlightManager.cs" />
     <Compile Include="Ribbon1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -302,7 +303,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>

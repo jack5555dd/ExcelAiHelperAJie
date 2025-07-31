@@ -30,19 +30,12 @@
         
         <!-- 聚光灯组 -->
         <group id="grpSpotlight" label="聚光灯">
-          <splitButton id="splitSpotlight" size="large">
-            <button id="btnSpotlight" label="聚光灯" onAction="OnSpotlightClick" imageMso="Spotlight" />
-            <menu id="menuSpotlight">
-              <button id="btnSpotlightOff" label="关闭聚光灯" onAction="OnSpotlightOffClick" imageMso="LightBulbOff" />
-              <menuSeparator id="sepSpotlight1" />
-              <button id="btnSpotlightYellow" label="黄色聚光" onAction="OnSpotlightYellowClick" imageMso="AccentColor1" />
-              <button id="btnSpotlightBlue" label="蓝色聚光" onAction="OnSpotlightBlueClick" imageMso="AccentColor2" />
-              <button id="btnSpotlightGreen" label="绿色聚光" onAction="OnSpotlightGreenClick" imageMso="AccentColor3" />
-              <button id="btnSpotlightRed" label="红色聚光" onAction="OnSpotlightRedClick" imageMso="AccentColor4" />
-              <menuSeparator id="sepSpotlight2" />
-              <button id="btnSpotlightCustom" label="自定义颜色" onAction="OnSpotlightCustomClick" imageMso="ColorPicker" />
-            </menu>
-          </splitButton>
+          <button id="btnSpotlight" 
+                  label="Spotlight" 
+                  size="large" 
+                  onAction="OnSpotlightClick" 
+                  imageMso="Lightbulb" 
+                  tag="toggle" />
         </group>
         
         <!-- 设置和帮助组 -->

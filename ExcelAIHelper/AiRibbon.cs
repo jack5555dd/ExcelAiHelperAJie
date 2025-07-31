@@ -13,8 +13,6 @@ namespace ExcelAIHelper
     public class AiRibbon : Office.IRibbonExtensibility
     {
         private Office.IRibbonUI ribbon;
-        private bool spotlightEnabled = false;
-        private Color spotlightColor = Color.Yellow;
 
         public string GetCustomUI(string ribbonID)
         {
@@ -91,102 +89,10 @@ namespace ExcelAIHelper
         #region 聚光灯功能
         public void OnSpotlightClick(Office.IRibbonControl control)
         {
-            try
-            {
-                spotlightEnabled = !spotlightEnabled;
-                if (spotlightEnabled)
-                {
-                    ApplySpotlight();
-                    MessageBox.Show("聚光灯已开启，点击单元格或选择区域查看效果", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    RemoveSpotlight();
-                    MessageBox.Show("聚光灯已关闭", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"聚光灯功能出错: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            SpotlightManager.Toggle();
         }
 
-        public void OnSpotlightOffClick(Office.IRibbonControl control)
-        {
-            spotlightEnabled = false;
-            RemoveSpotlight();
-            MessageBox.Show("聚光灯已关闭", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
-        public void OnSpotlightYellowClick(Office.IRibbonControl control)
-        {
-            spotlightColor = Color.Yellow;
-            if (spotlightEnabled) ApplySpotlight();
-        }
-
-        public void OnSpotlightBlueClick(Office.IRibbonControl control)
-        {
-            spotlightColor = Color.LightBlue;
-            if (spotlightEnabled) ApplySpotlight();
-        }
-
-        public void OnSpotlightGreenClick(Office.IRibbonControl control)
-        {
-            spotlightColor = Color.LightGreen;
-            if (spotlightEnabled) ApplySpotlight();
-        }
-
-        public void OnSpotlightRedClick(Office.IRibbonControl control)
-        {
-            spotlightColor = Color.LightCoral;
-            if (spotlightEnabled) ApplySpotlight();
-        }
-
-        public void OnSpotlightCustomClick(Office.IRibbonControl control)
-        {
-            using (ColorDialog colorDialog = new ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    spotlightColor = colorDialog.Color;
-                    if (spotlightEnabled) ApplySpotlight();
-                }
-            }
-        }
-
-        private void ApplySpotlight()
-        {
-            try
-            {
-                Excel.Application app = Globals.ThisAddIn.Application;
-                Excel.Range selection = app.Selection as Excel.Range;
-                if (selection != null)
-                {
-                    selection.Interior.Color = ColorTranslator.ToOle(spotlightColor);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"ApplySpotlight error: {ex.Message}");
-            }
-        }
-
-        private void RemoveSpotlight()
-        {
-            try
-            {
-                Excel.Application app = Globals.ThisAddIn.Application;
-                Excel.Range selection = app.Selection as Excel.Range;
-                if (selection != null)
-                {
-                    selection.Interior.ColorIndex = Excel.XlColorIndex.xlColorIndexNone;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"RemoveSpotlight error: {ex.Message}");
-            }
-        }
         #endregion
 
         #region 设置和帮助功能
