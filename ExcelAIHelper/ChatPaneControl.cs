@@ -43,19 +43,24 @@ namespace ExcelAIHelper
                     _aiClient, 
                     _promptBuilder, 
                     _instructionParser, 
-                    _operationEngine);
+                    excelApp);
                 
-                AppendToChatHistory("系统", "服务初始化完成，可以开始对话。", Color.Green);
+                AppendToChatHistory("系统", "Excel AI助手已启动，支持自然语言操作Excel表格。", Color.Green);
+                AppendToChatHistory("系统", "💡 提示：您可以说\"在A1输入100\"、\"给选中区域设置红色背景\"等。", Color.Gray);
                 
                 // Test API connection if API key is set
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.ApiKey))
                 {
                     _ = TestApiConnectionAsync(); // Fire and forget
                 }
+                else
+                {
+                    AppendToChatHistory("系统", "⚠️ 请先点击\"API 设置\"配置DeepSeek API密钥。", Color.Orange);
+                }
             }
             catch (Exception ex)
             {
-                AppendToChatHistory("系统", $"初始化失败: {ex.Message}", Color.Red);
+                AppendToChatHistory("系统", $"❌ 初始化失败: {ex.Message}", Color.Red);
                 System.Diagnostics.Debug.WriteLine($"Service initialization failed: {ex.Message}");
             }
         }
@@ -106,14 +111,33 @@ namespace ExcelAIHelper
                     return;
                 }
                 
-                // Get preview of operations
-                string previewResult = await _operationDispatcher.ApplyAsync(userMessage, true);
+                // Get preview of operations using new OperationResult
+                var previewResult = await _operationDispatcher.ApplyAsync(userMessage, true);
                 
                 // Remove thinking indicator
                 RemoveLastChatHistoryLine();
                 
-                // Show preview
-                ShowPreview(previewResult);
+                if (previewResult.Success)
+                {
+                    // Show preview
+                    ShowPreview(previewResult.GetUserMessage());
+                }
+                else
+                {
+                    // Handle error
+                    AppendToChatHistory("系统", previewResult.GetUserMessage(), Color.Red);
+                    
+                    // If it's a format error and can retry, offer retry option
+                    if (previewResult.CanRetry && previewResult.ErrorType == "协议格式错误")
+                    {
+                        AppendToChatHistory("系统", "正在尝试重新生成...", Color.Gray);
+                        await RetryOperationAsync(userMessage);
+                    }
+                    else
+                    {
+                        SetInputEnabled(true);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -132,14 +156,29 @@ namespace ExcelAIHelper
                 // Show executing indicator
                 AppendToChatHistory("系统", "执行操作中...", Color.Gray);
                 
-                // Execute operations
-                string result = await _operationDispatcher.ApplyAsync(_currentUserRequest, false);
+                // Execute operations using new OperationResult
+                var result = await _operationDispatcher.ApplyAsync(_currentUserRequest, false);
                 
                 // Remove executing indicator
                 RemoveLastChatHistoryLine();
                 
-                // Show result
-                AppendToChatHistory("AI", result, Color.Green);
+                if (result.Success)
+                {
+                    // Show success result
+                    AppendToChatHistory("AI", result.GetUserMessage(), Color.Green);
+                }
+                else
+                {
+                    // Show error result
+                    AppendToChatHistory("系统", result.GetUserMessage(), Color.Red);
+                    
+                    // If it's a format error and can retry, offer retry option
+                    if (result.CanRetry && result.ErrorType == "协议格式错误")
+                    {
+                        AppendToChatHistory("系统", "正在尝试重新执行...", Color.Gray);
+                        await RetryOperationAsync(_currentUserRequest, false);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -252,16 +291,65 @@ namespace ExcelAIHelper
         {
             string errorMessage;
             
-            if (ex is AiOperationException aiEx)
+            if (ex is AiFormatException formatEx)
             {
-                errorMessage = aiEx.Message;
+                errorMessage = $"❌ AI响应格式错误: {formatEx.GetUserFriendlyMessage()}";
+            }
+            else if (ex is AiOperationException aiEx)
+            {
+                errorMessage = $"❌ 操作执行错误: {aiEx.Message}";
             }
             else
             {
-                errorMessage = $"发生错误: {ex.Message}";
+                errorMessage = $"❌ 系统错误: {ex.Message}";
             }
             
+            // Remove any pending indicators
+            RemoveLastChatHistoryLine();
+            
             AppendToChatHistory("系统", errorMessage, Color.Red);
+            System.Diagnostics.Debug.WriteLine($"Error: {ex}");
+        }
+        
+        /// <summary>
+        /// 重试操作（用于协议违规后的自动重试）
+        /// </summary>
+        /// <param name="userRequest">用户请求</param>
+        /// <param name="isDryRun">是否为预览模式</param>
+        private async Task RetryOperationAsync(string userRequest, bool isDryRun = true)
+        {
+            try
+            {
+                var retryResult = await _operationDispatcher.RetryAsync(userRequest, "协议格式错误", isDryRun);
+                
+                // Remove retry indicator
+                RemoveLastChatHistoryLine();
+                
+                if (retryResult.Success)
+                {
+                    if (isDryRun)
+                    {
+                        ShowPreview(retryResult.GetUserMessage());
+                    }
+                    else
+                    {
+                        AppendToChatHistory("AI", retryResult.GetUserMessage(), Color.Green);
+                        SetInputEnabled(true);
+                    }
+                }
+                else
+                {
+                    AppendToChatHistory("系统", $"❌ 重试失败: {retryResult.ErrorMessage}", Color.Red);
+                    AppendToChatHistory("系统", "💡 请尝试重新描述您的需求，使用更清晰的表达。", Color.Gray);
+                    SetInputEnabled(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                RemoveLastChatHistoryLine();
+                AppendToChatHistory("系统", $"❌ 重试过程出错: {ex.Message}", Color.Red);
+                SetInputEnabled(true);
+            }
         }
 
         private async Task TestApiConnectionAsync()
@@ -270,15 +358,15 @@ namespace ExcelAIHelper
             {
                 AppendToChatHistory("系统", "正在测试API连接...", Color.Gray);
                 
-                var (success, message) = await _aiClient.TestConnectionAsync();
+                var testResult = await _aiClient.TestConnectionAsync();
                 
-                if (success)
+                if (testResult.Item1)
                 {
                     AppendToChatHistory("系统", "✓ API连接正常", Color.Green);
                 }
                 else
                 {
-                    AppendToChatHistory("系统", $"✗ API连接失败: {message}", Color.Red);
+                    AppendToChatHistory("系统", $"✗ API连接失败: {testResult.Item2}", Color.Red);
                     AppendToChatHistory("系统", "请点击'API 设置'按钮检查配置", Color.Orange);
                 }
             }

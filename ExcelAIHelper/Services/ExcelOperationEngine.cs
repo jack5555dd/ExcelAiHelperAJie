@@ -385,12 +385,6 @@ namespace ExcelAIHelper.Services
                             formula = $"=SUM({column}1:{column}{row - 1})";
                             System.Diagnostics.Debug.WriteLine($"Default SUM formula: {formula}");
                         }
-                        else
-                        {
-                            // If in row 1, sum the row to the left
-                            formula = $"=SUM(A{row}:{GetPreviousColumn(column)}{row})";
-                            System.Diagnostics.Debug.WriteLine($"Row-based SUM formula: {formula}");
-                        }
                     }
                 }
             }
@@ -487,29 +481,6 @@ namespace ExcelAIHelper.Services
             }
             return columnName;
         }
-
-        /// <summary>
-        /// Gets the previous column letter
-        /// </summary>
-        private string GetPreviousColumn(string column)
-        {
-            if (column == "A") return "A";
-            
-            char lastChar = column[column.Length - 1];
-            if (lastChar > 'A')
-            {
-                return column.Substring(0, column.Length - 1) + (char)(lastChar - 1);
-            }
-            else
-            {
-                // Handle cases like "BA" -> "AZ"
-                if (column.Length > 1)
-                {
-                    return GetPreviousColumn(column.Substring(0, column.Length - 1)) + "Z";
-                }
-                return "A";
-            }
-        }
         
         /// <summary>
         /// Sets the number format for a range
@@ -529,6 +500,156 @@ namespace ExcelAIHelper.Services
                 catch (Exception ex)
                 {
                     throw new AiOperationException("Failed to set number format", ex);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Copies data from source range to target range
+        /// </summary>
+        /// <param name="sourceRange">The source range to copy from</param>
+        /// <param name="targetRange">The target range to copy to</param>
+        /// <param name="copyType">The type of copy operation</param>
+        public async Task CopyRangeAsync(Excel.Range sourceRange, Excel.Range targetRange, CopyType copyType)
+        {
+            await Task.Run(() => {
+                try
+                {
+                    if (sourceRange == null) throw new ArgumentNullException(nameof(sourceRange));
+                    if (targetRange == null) throw new ArgumentNullException(nameof(targetRange));
+                    
+                    // Copy the source range
+                    sourceRange.Copy();
+                    
+                    // Paste based on copy type
+                    switch (copyType)
+                    {
+                        case CopyType.All:
+                            targetRange.PasteSpecial(Excel.XlPasteType.xlPasteAll);
+                            break;
+                        case CopyType.Values:
+                            targetRange.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                            break;
+                        case CopyType.Formulas:
+                            targetRange.PasteSpecial(Excel.XlPasteType.xlPasteFormulas);
+                            break;
+                        case CopyType.Formats:
+                            targetRange.PasteSpecial(Excel.XlPasteType.xlPasteFormats);
+                            break;
+                        default:
+                            targetRange.PasteSpecial(Excel.XlPasteType.xlPasteAll);
+                            break;
+                    }
+                    
+                    // Clear clipboard
+                    _excelApp.CutCopyMode = false;
+                }
+                catch (Exception ex)
+                {
+                    throw new AiOperationException("Failed to copy range", ex);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Finds and replaces text in a range
+        /// </summary>
+        /// <param name="range">The range to search in</param>
+        /// <param name="findWhat">The text to find</param>
+        /// <param name="replaceWith">The text to replace with</param>
+        /// <param name="matchCase">Whether to match case</param>
+        /// <param name="matchEntireCell">Whether to match entire cell</param>
+        /// <returns>Number of replacements made</returns>
+        public async Task<int> FindAndReplaceAsync(Excel.Range range, string findWhat, string replaceWith, bool matchCase = false, bool matchEntireCell = false)
+        {
+            return await Task.Run(() => {
+                try
+                {
+                    if (range == null) throw new ArgumentNullException(nameof(range));
+                    if (string.IsNullOrEmpty(findWhat)) throw new ArgumentNullException(nameof(findWhat));
+                    
+                    int replaceCount = 0;
+                    Excel.Range foundRange = range.Find(
+                        What: findWhat,
+                        LookIn: Excel.XlFindLookIn.xlValues,
+                        LookAt: matchEntireCell ? Excel.XlLookAt.xlWhole : Excel.XlLookAt.xlPart,
+                        SearchOrder: Excel.XlSearchOrder.xlByRows,
+                        SearchDirection: Excel.XlSearchDirection.xlNext,
+                        MatchCase: matchCase);
+                    
+                    if (foundRange != null)
+                    {
+                        string firstAddress = foundRange.Address;
+                        do
+                        {
+                            foundRange.Value = replaceWith;
+                            replaceCount++;
+                            foundRange = range.FindNext(foundRange);
+                        }
+                        while (foundRange != null && foundRange.Address != firstAddress);
+                    }
+                    
+                    return replaceCount;
+                }
+                catch (Exception ex)
+                {
+                    throw new AiOperationException("Failed to find and replace", ex);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Sorts a range of data
+        /// </summary>
+        /// <param name="range">The range to sort</param>
+        /// <param name="sortColumn">The column to sort by (1-based)</param>
+        /// <param name="ascending">Whether to sort in ascending order</param>
+        /// <param name="hasHeaders">Whether the range has headers</param>
+        public async Task SortRangeAsync(Excel.Range range, int sortColumn, bool ascending = true, bool hasHeaders = true)
+        {
+            await Task.Run(() => {
+                try
+                {
+                    if (range == null) throw new ArgumentNullException(nameof(range));
+                    
+                    Excel.Range sortKey = range.Columns[sortColumn];
+                    range.Sort(
+                        Key1: sortKey,
+                        Order1: ascending ? Excel.XlSortOrder.xlAscending : Excel.XlSortOrder.xlDescending,
+                        Header: hasHeaders ? Excel.XlYesNoGuess.xlYes : Excel.XlYesNoGuess.xlNo);
+                }
+                catch (Exception ex)
+                {
+                    throw new AiOperationException("Failed to sort range", ex);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Applies auto filter to a range
+        /// </summary>
+        /// <param name="range">The range to filter</param>
+        /// <param name="column">The column to filter by (1-based)</param>
+        /// <param name="criteria">The filter criteria</param>
+        public async Task ApplyAutoFilterAsync(Excel.Range range, int column, string criteria)
+        {
+            await Task.Run(() => {
+                try
+                {
+                    if (range == null) throw new ArgumentNullException(nameof(range));
+                    
+                    // Clear existing filters
+                    if (range.Worksheet.AutoFilterMode)
+                    {
+                        range.Worksheet.AutoFilterMode = false;
+                    }
+                    
+                    // Apply auto filter
+                    range.AutoFilter(Field: column, Criteria1: criteria);
+                }
+                catch (Exception ex)
+                {
+                    throw new AiOperationException("Failed to apply auto filter", ex);
                 }
             });
         }
@@ -625,22 +746,6 @@ namespace ExcelAIHelper.Services
                     case InstructionType.ClearContent:
                         await ClearRangeContentAsync(targetRange);
                         return $"✓ Cleared content in {instruction.TargetRange ?? targetRange.Address}";
-
-                    case InstructionType.DeleteRows:
-                        await DeleteRowsAsync(targetRange);
-                        return $"✓ Deleted rows in {instruction.TargetRange ?? targetRange.Address}";
-
-                    case InstructionType.DeleteColumns:
-                        await DeleteColumnsAsync(targetRange);
-                        return $"✓ Deleted columns in {instruction.TargetRange ?? targetRange.Address}";
-
-                    case InstructionType.InsertRows:
-                        await InsertRowsAsync(targetRange);
-                        return $"✓ Inserted rows at {instruction.TargetRange ?? targetRange.Address}";
-
-                    case InstructionType.InsertColumns:
-                        await InsertColumnsAsync(targetRange);
-                        return $"✓ Inserted columns at {instruction.TargetRange ?? targetRange.Address}";
                         
                     default:
                         return $"✗ Unsupported instruction type: {instruction.Type}";
@@ -701,93 +806,11 @@ namespace ExcelAIHelper.Services
                 if (underline.HasValue) styleChanges.Add($"underline: {underline.Value}");
                 if (fontSize.HasValue) styleChanges.Add($"font size: {fontSize.Value}");
                 if (!string.IsNullOrEmpty(fontName)) styleChanges.Add($"font: {fontName}");
-                results.Add($"font style ({string.Join(", ", styleChanges)})");
+                
+                results.AddRange(styleChanges);
             }
 
-            if (results.Count > 0)
-            {
-                return $"✓ Set {string.Join(", ", results)} in {instruction.TargetRange ?? targetRange.Address}";
-            }
-            else
-            {
-                return $"✗ SetCellStyle instruction missing style parameters";
-            }
-        }
-
-        /// <summary>
-        /// Deletes rows in the specified range
-        /// </summary>
-        /// <param name="range">The range containing rows to delete</param>
-        public async Task DeleteRowsAsync(Excel.Range range)
-        {
-            await Task.Run(() => {
-                try
-                {
-                    if (range == null) throw new ArgumentNullException(nameof(range));
-                    range.EntireRow.Delete();
-                }
-                catch (Exception ex)
-                {
-                    throw new AiOperationException("Failed to delete rows", ex);
-                }
-            });
-        }
-
-        /// <summary>
-        /// Deletes columns in the specified range
-        /// </summary>
-        /// <param name="range">The range containing columns to delete</param>
-        public async Task DeleteColumnsAsync(Excel.Range range)
-        {
-            await Task.Run(() => {
-                try
-                {
-                    if (range == null) throw new ArgumentNullException(nameof(range));
-                    range.EntireColumn.Delete();
-                }
-                catch (Exception ex)
-                {
-                    throw new AiOperationException("Failed to delete columns", ex);
-                }
-            });
-        }
-
-        /// <summary>
-        /// Inserts rows at the specified range
-        /// </summary>
-        /// <param name="range">The range where to insert rows</param>
-        public async Task InsertRowsAsync(Excel.Range range)
-        {
-            await Task.Run(() => {
-                try
-                {
-                    if (range == null) throw new ArgumentNullException(nameof(range));
-                    range.EntireRow.Insert();
-                }
-                catch (Exception ex)
-                {
-                    throw new AiOperationException("Failed to insert rows", ex);
-                }
-            });
-        }
-
-        /// <summary>
-        /// Inserts columns at the specified range
-        /// </summary>
-        /// <param name="range">The range where to insert columns</param>
-        public async Task InsertColumnsAsync(Excel.Range range)
-        {
-            await Task.Run(() => {
-                try
-                {
-                    if (range == null) throw new ArgumentNullException(nameof(range));
-                    range.EntireColumn.Insert();
-                }
-                catch (Exception ex)
-                {
-                    throw new AiOperationException("Failed to insert columns", ex);
-                }
-            });
+            return $"✓ Set {string.Join(", ", results)} in {targetRange.Address}";
         }
     }
 }

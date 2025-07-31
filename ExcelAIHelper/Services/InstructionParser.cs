@@ -4,16 +4,24 @@ using System.Threading.Tasks;
 using ExcelAIHelper.Exceptions;
 using ExcelAIHelper.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ExcelAIHelper.Services
 {
     /// <summary>
-    /// Parses AI responses into executable instructions
+    /// Parses AI responses into executable instructions using basic JSON validation
     /// </summary>
     public class InstructionParser
     {
         /// <summary>
-        /// Parses the AI response into an instruction set
+        /// Creates a new instance of InstructionParser
+        /// </summary>
+        public InstructionParser()
+        {
+        }
+        
+        /// <summary>
+        /// Parses the AI response into an instruction set using strict protocol validation
         /// </summary>
         /// <param name="aiResponse">The response from the AI</param>
         /// <returns>A parsed instruction set</returns>
@@ -21,117 +29,170 @@ namespace ExcelAIHelper.Services
         {
             try
             {
-                // Try to parse as JSON first
-                if (TryParseJson(aiResponse, out InstructionSet instructionSet))
+                // Step 1: Validate against JSON Command Protocol
+                var validationResult = _validator.Validate(aiResponse);
+                
+                if (!validationResult.IsValid)
                 {
-                    return await Task.FromResult(instructionSet);
+                    // Protocol violation - throw AiFormatException
+                    throw AiFormatException.CreateProtocolViolation(aiResponse, validationResult.ErrorMessage);
                 }
-
-                // If not JSON, try to parse as natural language
-                return await Task.FromResult(ParseNaturalLanguage(aiResponse));
+                
+                // Step 2: Convert validated JSON to InstructionSet
+                var instructionSet = ConvertToInstructionSet(validationResult.ValidatedJson);
+                
+                return await Task.FromResult(instructionSet);
+            }
+            catch (AiFormatException)
+            {
+                // Re-throw format exceptions as-is
+                throw;
             }
             catch (Exception ex)
             {
-                throw new AiOperationException("Failed to parse AI response", ex);
-            }
-        }
-
-        private bool TryParseJson(string response, out InstructionSet instructionSet)
-        {
-            try
-            {
-                // Clean the response by removing markdown code blocks
-                string cleanedResponse = CleanJsonResponse(response);
-                
-                System.Diagnostics.Debug.WriteLine($"Original response: {response}");
-                System.Diagnostics.Debug.WriteLine($"Cleaned response: {cleanedResponse}");
-                
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
-                instructionSet = JsonConvert.DeserializeObject<InstructionSet>(cleanedResponse, settings);
-                return instructionSet != null && instructionSet.Instructions != null;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"JSON parsing failed: {ex.Message}");
-                instructionSet = null;
-                return false;
+                // Wrap other exceptions as format exceptions
+                throw new AiFormatException("Failed to parse AI response", aiResponse, ex);
             }
         }
 
         /// <summary>
-        /// Cleans the AI response by removing markdown code blocks and extra formatting
+        /// Converts validated JSON to InstructionSet
         /// </summary>
-        /// <param name="response">The raw AI response</param>
-        /// <returns>Clean JSON string</returns>
-        private string CleanJsonResponse(string response)
+        /// <param name="validatedJson">JSON that has passed protocol validation</param>
+        /// <returns>InstructionSet object</returns>
+        private InstructionSet ConvertToInstructionSet(JObject validatedJson)
         {
-            if (string.IsNullOrEmpty(response))
-                return response;
-
-            // Remove markdown code blocks (```json ... ```)
-            string cleaned = response.Trim();
-            
-            // Check if response starts with ```json and ends with ```
-            if (cleaned.StartsWith("```json", StringComparison.OrdinalIgnoreCase))
+            try
             {
-                // Find the end of the opening ```json
-                int startIndex = cleaned.IndexOf('\n');
-                if (startIndex == -1) startIndex = 7; // length of "```json"
-                else startIndex += 1; // skip the newline
+                var instructionSet = new InstructionSet
+                {
+                    Summary = validatedJson["summary"]?.ToString() ?? "",
+                    Instructions = new List<Instruction>()
+                };
                 
-                // Find the closing ```
-                int endIndex = cleaned.LastIndexOf("```");
-                if (endIndex > startIndex)
+                var commands = validatedJson["commands"] as JArray;
+                if (commands != null)
                 {
-                    cleaned = cleaned.Substring(startIndex, endIndex - startIndex).Trim();
+                    foreach (var command in commands)
+                    {
+                        var instruction = ConvertCommandToInstruction(command as JObject);
+                        if (instruction != null)
+                        {
+                            instructionSet.Instructions.Add(instruction);
+                        }
+                    }
                 }
-                else
-                {
-                    // No closing ```, just remove the opening
-                    cleaned = cleaned.Substring(startIndex).Trim();
-                }
+                
+                return instructionSet;
             }
-            else if (cleaned.StartsWith("```", StringComparison.OrdinalIgnoreCase))
+            catch (Exception ex)
             {
-                // Generic code block
-                int startIndex = cleaned.IndexOf('\n');
-                if (startIndex != -1)
-                {
-                    int endIndex = cleaned.LastIndexOf("```");
-                    if (endIndex > startIndex)
-                    {
-                        cleaned = cleaned.Substring(startIndex + 1, endIndex - startIndex - 1).Trim();
-                    }
-                    else
-                    {
-                        cleaned = cleaned.Substring(startIndex + 1).Trim();
-                    }
-                }
+                throw new AiFormatException("Failed to convert validated JSON to InstructionSet", validatedJson.ToString(), ex);
             }
-
-            return cleaned;
         }
-
-        private InstructionSet ParseNaturalLanguage(string response)
+        
+        /// <summary>
+        /// Converts a single command to an Instruction
+        /// </summary>
+        /// <param name="command">Command JSON object</param>
+        /// <returns>Instruction object</returns>
+        private Instruction ConvertCommandToInstruction(JObject command)
         {
-            // For now, create a simple instruction set with a single text instruction
-            // In a real implementation, this would use NLP techniques to extract operations
-            return new InstructionSet
+            if (command == null) return null;
+            
+            var function = command["function"]?.ToString();
+            var arguments = command["arguments"] as JObject;
+            var description = command["description"]?.ToString() ?? "";
+            
+            // Map function names to InstructionType
+            var instructionType = MapFunctionToInstructionType(function);
+            
+            // Convert arguments to parameters dictionary
+            var parameters = new Dictionary<string, object>();
+            if (arguments != null)
             {
-                Instructions = new List<Instruction>
+                foreach (var prop in arguments.Properties())
                 {
-                    new Instruction
-                    {
-                        Type = InstructionType.Unknown,
-                        Description = response,
-                        Parameters = new Dictionary<string, object>()
-                    }
+                    parameters[prop.Name] = prop.Value?.ToObject<object>();
                 }
+            }
+            
+            // Extract target range from arguments
+            string targetRange = null;
+            if (parameters.ContainsKey("range"))
+            {
+                targetRange = parameters["range"]?.ToString();
+            }
+            else if (parameters.ContainsKey("position"))
+            {
+                targetRange = parameters["position"]?.ToString();
+            }
+            
+            return new Instruction
+            {
+                Type = instructionType,
+                Description = description,
+                TargetRange = targetRange,
+                Parameters = parameters,
+                RequiresConfirmation = ShouldRequireConfirmation(instructionType)
             };
+        }
+        
+        /// <summary>
+        /// Maps function name to InstructionType
+        /// </summary>
+        /// <param name="function">Function name from JSON command</param>
+        /// <returns>Corresponding InstructionType</returns>
+        private InstructionType MapFunctionToInstructionType(string function)
+        {
+            switch (function)
+            {
+                case "setCellValue":
+                    return InstructionType.SetCellValue;
+                case "applyCellFormula":
+                    return InstructionType.ApplyFormula;
+                case "setCellStyle":
+                    return InstructionType.SetCellStyle;
+                case "setCellFormat":
+                    return InstructionType.SetCellFormat;
+                case "clearCellContent":
+                    return InstructionType.ClearContent;
+                case "insertRows":
+                    return InstructionType.InsertRows;
+                case "insertColumns":
+                    return InstructionType.InsertColumns;
+                case "deleteRows":
+                    return InstructionType.DeleteRows;
+                case "deleteColumns":
+                    return InstructionType.DeleteColumns;
+                case "sortRange":
+                    return InstructionType.SortData;
+                case "filterRange":
+                    return InstructionType.FilterData;
+                case "createChart":
+                    return InstructionType.CreateChart;
+                default:
+                    return InstructionType.Unknown;
+            }
+        }
+        
+        /// <summary>
+        /// Determines if an instruction type should require confirmation
+        /// </summary>
+        /// <param name="type">Instruction type</param>
+        /// <returns>True if confirmation is required</returns>
+        private bool ShouldRequireConfirmation(InstructionType type)
+        {
+            // Destructive operations require confirmation
+            switch (type)
+            {
+                case InstructionType.DeleteRows:
+                case InstructionType.DeleteColumns:
+                case InstructionType.ClearContent:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }
