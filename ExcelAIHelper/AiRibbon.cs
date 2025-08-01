@@ -37,53 +37,266 @@ namespace ExcelAIHelper
         #endregion
 
         #region 工具箱功能
-        // 数据工具
-        public void OnDataAnalysisClick(Office.IRibbonControl control)
+        
+        // 快速录入
+        public void OnQuickInputSettingsClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("数据分析功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("OnQuickInputSettingsClick called");
+                var form = new QuickInputSettingsForm();
+                form.Show(); // 使用非模态对话框
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"OnQuickInputSettingsClick error: {ex.Message}");
+                MessageBox.Show($"打开快速录入设置失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-        public void OnDataCleanClick(Office.IRibbonControl control)
+        
+        public void OnSequenceNumbersClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("数据清洗功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("序号功能正在开发中...", "快速录入", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void OnDataImportClick(Office.IRibbonControl control)
+        
+        public void OnDateSeriesClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("数据导入功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("日期序列功能正在开发中...", "快速录入", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        // 格式工具
-        public void OnAutoFormatClick(Office.IRibbonControl control)
+        
+        public void OnCustomSeriesClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("智能格式化功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("自定义序列功能正在开发中...", "快速录入", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void OnStyleApplyClick(Office.IRibbonControl control)
+        
+        // 提取/过滤
+        public void OnExtractNumbersClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("样式应用功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("提取数字功能正在开发中...", "提取/过滤", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void OnTableFormatClick(Office.IRibbonControl control)
+        
+        public void OnExtractTextClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("表格美化功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("提取文本功能正在开发中...", "提取/过滤", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        // 公式工具
-        public void OnFormulaHelperClick(Office.IRibbonControl control)
+        
+        public void OnExtractDateClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("公式助手功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("提取日期功能正在开发中...", "提取/过滤", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void OnFormulaCheckClick(Office.IRibbonControl control)
+        
+        public void OnRemoveDuplicatesClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("公式检查功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("去重功能正在开发中...", "提取/过滤", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public void OnFormulaOptimizeClick(Office.IRibbonControl control)
+        
+        public void OnAdvancedFilterClick(Office.IRibbonControl control)
         {
-            MessageBox.Show("公式优化功能正在开发中...", "AI 助手", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("高级筛选功能正在开发中...", "提取/过滤", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        
+        // 数值批量计算
+        public void OnBatchAddClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量加法功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnBatchSubtractClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量减法功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnBatchMultiplyClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量乘法功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnBatchDivideClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量除法功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnBatchPercentClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量百分比功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnBatchPowerClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("批量乘方功能正在开发中...", "数值批量计算", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 四舍五入
+        public void OnRoundToIntegerClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("取整功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRoundToDecimalClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("保留小数功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRoundUpClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("向上取整功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRoundDownClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("向下取整功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRoundToThousandClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("千位取整功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRoundToTenThousandClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("万位取整功能正在开发中...", "四舍五入", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 数字格式刷
+        public void OnFormatGeneralClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("常规格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatNumberClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("数值格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatPercentClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("百分比格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatDateClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("日期格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatTimeClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("时间格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatTextClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("文本格式功能正在开发中...", "数字格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 金额格式刷
+        public void OnFormatCNYClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("人民币格式功能正在开发中...", "金额格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatUSDClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("美元格式功能正在开发中...", "金额格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatEURClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("欧元格式功能正在开发中...", "金额格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatAccountingClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("会计格式功能正在开发中...", "金额格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnFormatFinancialClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("财务格式功能正在开发中...", "金额格式刷", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 姓名处理
+        public void OnSplitNameClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("姓名拆分功能正在开发中...", "姓名处理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnMergeNameClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("姓名合并功能正在开发中...", "姓名处理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnNameValidationClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("姓名校验功能正在开发中...", "姓名处理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnRemoveSpacesClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("去除空格功能正在开发中...", "姓名处理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnStandardizeNameClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("姓名标准化功能正在开发中...", "姓名处理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 身份证
+        public void OnIDValidationClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("身份证校验功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnExtractBirthdayClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("提取生日功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnExtractAgeClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("提取年龄功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnExtractGenderClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("提取性别功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnIDMaskClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("身份证脱敏功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnIDFormatClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("身份证格式化功能正在开发中...", "身份证", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        // 手机号
+        public void OnPhoneValidationClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("手机号校验功能正在开发中...", "手机号", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnPhoneMaskClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("手机号脱敏功能正在开发中...", "手机号", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnPhoneFormatClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("手机号格式化功能正在开发中...", "手机号", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnExtractCarrierClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("提取运营商功能正在开发中...", "手机号", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void OnExtractRegionClick(Office.IRibbonControl control)
+        {
+            MessageBox.Show("提取归属地功能正在开发中...", "手机号", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
         #endregion
 
         #region 聚光灯功能

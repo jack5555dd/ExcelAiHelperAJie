@@ -10,20 +10,96 @@
         <!-- 工具箱组 -->
         <group id="grpToolbox" label="工具箱">
           <menu id="menuToolbox" label="工具箱" size="large" imageMso="ToolsOptions">
-            <menu id="menuDataTools" label="数据工具">
-              <button id="btnDataAnalysis" label="数据分析" onAction="OnDataAnalysisClick" imageMso="ChartInsert" />
-              <button id="btnDataClean" label="数据清洗" onAction="OnDataCleanClick" imageMso="TableStyleMedium9" />
-              <button id="btnDataImport" label="数据导入" onAction="OnDataImportClick" imageMso="ImportExcel" />
+            <!-- 快速录入 -->
+            <menu id="menuQuickInput" label="快速录入">
+              <button id="btnQuickInputSettings" label="快速录入设置" onAction="OnQuickInputSettingsClick" imageMso="TableInsert" />
+              <menuSeparator id="sepQuickInput1" />
+              <button id="btnSequenceNumbers" label="序号" onAction="OnSequenceNumbersClick" imageMso="NumberingBullets" />
+              <button id="btnDateSeries" label="日期序列" onAction="OnDateSeriesClick" imageMso="DatePicker" />
+              <button id="btnCustomSeries" label="自定义序列" onAction="OnCustomSeriesClick" imageMso="ListMacros" />
             </menu>
-            <menu id="menuFormatTools" label="格式工具">
-              <button id="btnAutoFormat" label="智能格式化" onAction="OnAutoFormatClick" imageMso="ConditionalFormattingMenu" />
-              <button id="btnStyleApply" label="样式应用" onAction="OnStyleApplyClick" imageMso="FormatPainter" />
-              <button id="btnTableFormat" label="表格美化" onAction="OnTableFormatClick" imageMso="TableStylesGallery" />
+            
+            <!-- 提取/过滤 -->
+            <menu id="menuExtractFilter" label="提取/过滤">
+              <button id="btnExtractNumbers" label="提取数字" onAction="OnExtractNumbersClick" imageMso="FilterToggle" />
+              <button id="btnExtractText" label="提取文本" onAction="OnExtractTextClick" imageMso="TextBox" />
+              <button id="btnExtractDate" label="提取日期" onAction="OnExtractDateClick" imageMso="DatePicker" />
+              <menuSeparator id="sepExtract1" />
+              <button id="btnRemoveDuplicates" label="去重" onAction="OnRemoveDuplicatesClick" imageMso="RemoveDuplicates" />
+              <button id="btnAdvancedFilter" label="高级筛选" onAction="OnAdvancedFilterClick" imageMso="FilterAdvanced" />
             </menu>
-            <menu id="menuFormulaTools" label="公式工具">
-              <button id="btnFormulaHelper" label="公式助手" onAction="OnFormulaHelperClick" imageMso="FunctionWizard" />
-              <button id="btnFormulaCheck" label="公式检查" onAction="OnFormulaCheckClick" imageMso="FormulaAuditing" />
-              <button id="btnFormulaOptimize" label="公式优化" onAction="OnFormulaOptimizeClick" imageMso="Calculate" />
+            
+            <!-- 数值批量计算 -->
+            <menu id="menuBatchCalculation" label="数值批量计算">
+              <button id="btnBatchAdd" label="批量加法" onAction="OnBatchAddClick" imageMso="FunctionInsert" />
+              <button id="btnBatchSubtract" label="批量减法" onAction="OnBatchSubtractClick" imageMso="FunctionInsert" />
+              <button id="btnBatchMultiply" label="批量乘法" onAction="OnBatchMultiplyClick" imageMso="FunctionInsert" />
+              <button id="btnBatchDivide" label="批量除法" onAction="OnBatchDivideClick" imageMso="FunctionInsert" />
+              <menuSeparator id="sepBatch1" />
+              <button id="btnBatchPercent" label="批量百分比" onAction="OnBatchPercentClick" imageMso="Percentage" />
+              <button id="btnBatchPower" label="批量乘方" onAction="OnBatchPowerClick" imageMso="FunctionInsert" />
+            </menu>
+            
+            <!-- 四舍五入 -->
+            <menu id="menuRounding" label="四舍五入">
+              <button id="btnRoundToInteger" label="取整" onAction="OnRoundToIntegerClick" imageMso="DecreaseDecimal" />
+              <button id="btnRoundToDecimal" label="保留小数" onAction="OnRoundToDecimalClick" imageMso="IncreaseDecimal" />
+              <button id="btnRoundUp" label="向上取整" onAction="OnRoundUpClick" imageMso="IncreaseDecimal" />
+              <button id="btnRoundDown" label="向下取整" onAction="OnRoundDownClick" imageMso="DecreaseDecimal" />
+              <menuSeparator id="sepRound1" />
+              <button id="btnRoundToThousand" label="千位取整" onAction="OnRoundToThousandClick" imageMso="DecreaseDecimal" />
+              <button id="btnRoundToTenThousand" label="万位取整" onAction="OnRoundToTenThousandClick" imageMso="DecreaseDecimal" />
+            </menu>
+            
+            <!-- 数字格式刷 -->
+            <menu id="menuNumberFormat" label="数字格式刷">
+              <button id="btnFormatGeneral" label="常规" onAction="OnFormatGeneralClick" imageMso="NumberFormatGeneral" />
+              <button id="btnFormatNumber" label="数值" onAction="OnFormatNumberClick" imageMso="NumberFormatNumber" />
+              <button id="btnFormatPercent" label="百分比" onAction="OnFormatPercentClick" imageMso="Percentage" />
+              <button id="btnFormatDate" label="日期" onAction="OnFormatDateClick" imageMso="DatePicker" />
+              <button id="btnFormatTime" label="时间" onAction="OnFormatTimeClick" imageMso="DateAndTimePicker" />
+              <button id="btnFormatText" label="文本" onAction="OnFormatTextClick" imageMso="TextBox" />
+            </menu>
+            
+            <!-- 金额格式刷 -->
+            <menu id="menuCurrencyFormat" label="金额格式刷">
+              <button id="btnFormatCNY" label="人民币" onAction="OnFormatCNYClick" imageMso="NumberFormatCurrency" />
+              <button id="btnFormatUSD" label="美元" onAction="OnFormatUSDClick" imageMso="NumberFormatCurrency" />
+              <button id="btnFormatEUR" label="欧元" onAction="OnFormatEURClick" imageMso="NumberFormatCurrency" />
+              <menuSeparator id="sepCurrency1" />
+              <button id="btnFormatAccounting" label="会计格式" onAction="OnFormatAccountingClick" imageMso="NumberFormatAccounting" />
+              <button id="btnFormatFinancial" label="财务格式" onAction="OnFormatFinancialClick" imageMso="NumberFormatFinancial" />
+            </menu>
+            
+            <!-- 姓名处理 -->
+            <menu id="menuNameProcessing" label="姓名处理">
+              <button id="btnSplitName" label="姓名拆分" onAction="OnSplitNameClick" imageMso="TextToColumns" />
+              <button id="btnMergeName" label="姓名合并" onAction="OnMergeNameClick" imageMso="MergeCells" />
+              <button id="btnNameValidation" label="姓名校验" onAction="OnNameValidationClick" imageMso="DataValidation" />
+              <menuSeparator id="sepName1" />
+              <button id="btnRemoveSpaces" label="去除空格" onAction="OnRemoveSpacesClick" imageMso="ClearFormats" />
+              <button id="btnStandardizeName" label="姓名标准化" onAction="OnStandardizeNameClick" imageMso="FormatPainter" />
+            </menu>
+            
+            <!-- 身份证 -->
+            <menu id="menuIDCard" label="身份证">
+              <button id="btnIDValidation" label="身份证校验" onAction="OnIDValidationClick" imageMso="DataValidation" />
+              <button id="btnExtractBirthday" label="提取生日" onAction="OnExtractBirthdayClick" imageMso="DatePicker" />
+              <button id="btnExtractAge" label="提取年龄" onAction="OnExtractAgeClick" imageMso="FunctionInsert" />
+              <button id="btnExtractGender" label="提取性别" onAction="OnExtractGenderClick" imageMso="PivotTable" />
+              <menuSeparator id="sepID1" />
+              <button id="btnIDMask" label="身份证脱敏" onAction="OnIDMaskClick" imageMso="ProtectDocument" />
+              <button id="btnIDFormat" label="身份证格式化" onAction="OnIDFormatClick" imageMso="FormatPainter" />
+            </menu>
+            
+            <!-- 手机号 -->
+            <menu id="menuPhoneNumber" label="手机号">
+              <button id="btnPhoneValidation" label="手机号校验" onAction="OnPhoneValidationClick" imageMso="DataValidation" />
+              <button id="btnPhoneMask" label="手机号脱敏" onAction="OnPhoneMaskClick" imageMso="ProtectDocument" />
+              <button id="btnPhoneFormat" label="手机号格式化" onAction="OnPhoneFormatClick" imageMso="FormatPainter" />
+              <menuSeparator id="sepPhone1" />
+              <button id="btnExtractCarrier" label="提取运营商" onAction="OnExtractCarrierClick" imageMso="PivotTable" />
+              <button id="btnExtractRegion" label="提取归属地" onAction="OnExtractRegionClick" imageMso="PivotTable" />
             </menu>
           </menu>
         </group>

@@ -56,6 +56,9 @@ namespace ExcelAIHelper
                 // 清理聚光灯资源
                 SpotlightManager.Cleanup();
                 
+                // 清理快速录入资源
+                QuickInputManager.Stop();
+                
                 System.Diagnostics.Debug.WriteLine("Excel AI Helper shutting down");
             }
             catch (Exception ex)
