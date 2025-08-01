@@ -51,7 +51,17 @@ namespace ExcelAIHelper
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Excel AI Helper shutting down");
+            try
+            {
+                // 清理聚光灯资源
+                SpotlightManager.Cleanup();
+                
+                System.Diagnostics.Debug.WriteLine("Excel AI Helper shutting down");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Shutdown cleanup error: {ex.Message}");
+            }
         }
 
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()

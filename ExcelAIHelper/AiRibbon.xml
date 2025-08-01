@@ -30,12 +30,23 @@
         
         <!-- 聚光灯组 -->
         <group id="grpSpotlight" label="聚光灯">
-          <button id="btnSpotlight" 
-                  label="Spotlight" 
-                  size="large" 
-                  onAction="OnSpotlightClick" 
-                  imageMso="Lightbulb" 
-                  tag="toggle" />
+          <splitButton id="btnSpotlight" size="large">
+            <button id="btnSpotlightMain" 
+                    label="聚光灯"
+                    onAction="OnSpotlightToggle" 
+                    imageMso="Lightbulb" />
+            <menu id="menuSpotlight">
+              <button id="btnSpotlightClose" 
+                      label="关闭" 
+                      onAction="OnSpotlightClose" 
+                      imageMso="Cancel" />
+              <menuSeparator id="sep1" />
+              <button id="btnSpotlightSettings" 
+                      label="设置" 
+                      onAction="OnSpotlightSettings" 
+                      imageMso="Options" />
+            </menu>
+          </splitButton>
         </group>
         
         <!-- 设置和帮助组 -->

@@ -87,12 +87,87 @@ namespace ExcelAIHelper
         #endregion
 
         #region 聚光灯功能
-        public void OnSpotlightClick(Office.IRibbonControl control)
+        /// <summary>
+        /// 聚光灯主按钮点击 - 切换聚光灯状态
+        /// </summary>
+        public void OnSpotlightToggle(Office.IRibbonControl control)
         {
-            SpotlightManager.Toggle();
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("OnSpotlightToggle called");
+                SpotlightManager.Toggle();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"OnSpotlightToggle error: {ex.Message}");
+                MessageBox.Show($"聚光灯操作失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-
+        
+        /// <summary>
+        /// 关闭聚光灯
+        /// </summary>
+        public void OnSpotlightClose(Office.IRibbonControl control)
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("OnSpotlightClose called");
+                if (SpotlightManager.IsActive)
+                {
+                    SpotlightManager.Stop();
+                    MessageBox.Show("聚光灯已关闭", "聚光灯", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("聚光灯当前未开启", "聚光灯", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"OnSpotlightClose error: {ex.Message}");
+                MessageBox.Show($"关闭聚光灯失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        /// <summary>
+        /// 聚光灯设置
+        /// </summary>
+        public void OnSpotlightSettings(Office.IRibbonControl control)
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("OnSpotlightSettings called");
+                ShowSpotlightSettings();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"OnSpotlightSettings error: {ex.Message}");
+                MessageBox.Show($"打开聚光灯设置失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        /// <summary>
+        /// 显示聚光灯设置对话框
+        /// </summary>
+        private void ShowSpotlightSettings()
+        {
+            try
+            {
+                using (var settingsForm = new SpotlightSettingsForm())
+                {
+                    if (settingsForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // 设置已在SpotlightSettingsForm中应用
+                        MessageBox.Show("设置已保存", "聚光灯设置", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"显示设置对话框失败: {ex.Message}");
+                MessageBox.Show($"显示设置对话框失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region 设置和帮助功能
