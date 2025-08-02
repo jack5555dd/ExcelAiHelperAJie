@@ -4,12 +4,12 @@
       <tab id="tabAi" label="AI 助手">
         <!-- 右侧面板组 -->
         <group id="grpPanel" label="面板">
-          <button id="btnChatPane" label="AI 聊天" size="large" onAction="OnChatPaneClick" imageMso="Chat" />
+          <button id="btnChatPane" label="AI 聊天" size="large" onAction="OnChatPaneClick" getImage="GetCustomIcon" />
         </group>
         
         <!-- 工具箱组 -->
         <group id="grpToolbox" label="工具箱">
-          <menu id="menuToolbox" label="工具箱" size="large" imageMso="ToolsOptions">
+          <menu id="menuToolbox" label="工具箱" size="large" getImage="GetCustomIcon">
             <!-- 快速录入 -->
             <menu id="menuQuickInput" label="快速录入">
               <button id="btnQuickInputSettings" label="快速录入设置" onAction="OnQuickInputSettingsClick" imageMso="TableInsert" />
@@ -110,7 +110,7 @@
             <button id="btnSpotlightMain" 
                     label="聚光灯"
                     onAction="OnSpotlightToggle" 
-                    imageMso="Lightbulb" />
+                    getImage="GetCustomIcon" />
             <menu id="menuSpotlight">
               <button id="btnSpotlightClose" 
                       label="关闭" 
@@ -127,7 +127,7 @@
         
         <!-- 设置和帮助组 -->
         <group id="grpSettings" label="设置">
-          <button id="btnSettings" label="设置" size="large" onAction="OnSettingsClick" imageMso="Options" />
+          <button id="btnSettings" label="设置" size="large" onAction="OnSettingsClick" getImage="GetCustomIcon" />
           <button id="btnExamples" label="示例" size="large" onAction="OnExamplesClick" imageMso="Help" />
           <button id="btnAbout" label="关于" size="large" onAction="OnAboutClick" imageMso="Info" />
         </group>

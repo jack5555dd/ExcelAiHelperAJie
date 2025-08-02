@@ -27,6 +27,79 @@ namespace ExcelAIHelper
             this.ribbon = ribbonUI;
         }
 
+        /// <summary>
+        /// 获取自定义图标
+        /// </summary>
+        /// <param name="control">Ribbon控件</param>
+        /// <returns>图标的IPictureDisp对象</returns>
+        public stdole.IPictureDisp GetCustomIcon(Office.IRibbonControl control)
+        {
+            try
+            {
+                string resourceName = "";
+                
+                // 根据控件ID确定对应的图标资源
+                switch (control.Id)
+                {
+                    case "btnChatPane":
+                        resourceName = "ExcelAIHelper.Resources.ai_chat_icon.png";
+                        break;
+                    case "menuToolbox":
+                        resourceName = "ExcelAIHelper.Resources.toolbox.png";
+                        break;
+                    case "btnSpotlightMain":
+                        resourceName = "ExcelAIHelper.Resources.lighter.png";
+                        break;
+                    case "btnSettings":
+                        resourceName = "ExcelAIHelper.Resources.setting.png";
+                        break;
+                    default:
+                        return null;
+                }
+
+                // 从嵌入资源中加载图标
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        byte[] imageBytes = new byte[stream.Length];
+                        stream.Read(imageBytes, 0, imageBytes.Length);
+                        
+                        // 将字节数组转换为IPictureDisp
+                        return ImageToIPictureDisp(imageBytes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GetCustomIcon error for {control.Id}: {ex.Message}");
+            }
+            
+            return null;
+        }
+
+        /// <summary>
+        /// 将图像字节数组转换为IPictureDisp对象
+        /// </summary>
+        /// <param name="imageBytes">图像字节数组</param>
+        /// <returns>IPictureDisp对象</returns>
+        private stdole.IPictureDisp ImageToIPictureDisp(byte[] imageBytes)
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                    return PictureConverter.ImageToPictureDisp(image);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ImageToIPictureDisp error: {ex.Message}");
+                return null;
+            }
+        }
+
         #region 面板功能
         public void OnChatPaneClick(Office.IRibbonControl control)
         {
@@ -423,5 +496,25 @@ namespace ExcelAIHelper
             }
         }
         #endregion
+    }
+
+    /// <summary>
+    /// 图像转换辅助类，继承自AxHost以访问受保护的方法
+    /// </summary>
+    internal class PictureConverter : AxHost
+    {
+        private PictureConverter() : base("59EE46BA-677D-4d20-BF10-8D8067CB8B33")
+        {
+        }
+
+        /// <summary>
+        /// 将System.Drawing.Image转换为IPictureDisp
+        /// </summary>
+        /// <param name="image">要转换的图像</param>
+        /// <returns>IPictureDisp对象</returns>
+        public static stdole.IPictureDisp ImageToPictureDisp(System.Drawing.Image image)
+        {
+            return (stdole.IPictureDisp)GetIPictureDispFromPicture(image);
+        }
     }
 }

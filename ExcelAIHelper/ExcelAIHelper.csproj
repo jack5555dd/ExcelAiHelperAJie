@@ -289,6 +289,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AiRibbon.xml" />
+    <EmbeddedResource Include="Resources\ai_chat_icon.png" />
+    <EmbeddedResource Include="Resources\toolbox.png" />
+    <EmbeddedResource Include="Resources\lighter.png" />
+    <EmbeddedResource Include="Resources\setting.png" />
     <None Include="ExcelAIHelper_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
