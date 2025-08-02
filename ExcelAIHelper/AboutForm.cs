@@ -27,7 +27,7 @@ namespace ExcelAIHelper
                 var qrCodeImage = CreateSimpleQRCodeImage();
                 picQRCode.Image = qrCodeImage;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // 如果生成二维码失败，显示占位符文本
                 picQRCode.BackColor = Color.LightGray;

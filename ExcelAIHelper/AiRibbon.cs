@@ -16,15 +16,54 @@ namespace ExcelAIHelper
 
         public string GetCustomUI(string ribbonID)
         {
-            System.Diagnostics.Debug.WriteLine($"GetCustomUI called with {ribbonID}");
-            return new StreamReader(Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream("ExcelAIHelper.AiRibbon.xml")).ReadToEnd();
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"GetCustomUI called with {ribbonID}");
+                
+                var assembly = Assembly.GetExecutingAssembly();
+                if (assembly == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("GetCustomUI: Assembly is null");
+                    return string.Empty;
+                }
+                
+                var stream = assembly.GetManifestResourceStream("ExcelAIHelper.AiRibbon.xml");
+                if (stream == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("GetCustomUI: Resource stream is null");
+                    return string.Empty;
+                }
+                
+                using (var reader = new StreamReader(stream))
+                {
+                    var result = reader.ReadToEnd();
+                    System.Diagnostics.Debug.WriteLine($"GetCustomUI: Successfully loaded ribbon XML ({result.Length} characters)");
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GetCustomUI failed: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"GetCustomUI exception type: {ex.GetType().Name}");
+                System.Diagnostics.Debug.WriteLine($"GetCustomUI stack trace: {ex.StackTrace}");
+                return string.Empty;
+            }
         }
 
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
-            System.Diagnostics.Debug.WriteLine("Ribbon_Load called");
-            this.ribbon = ribbonUI;
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("Ribbon_Load called");
+                this.ribbon = ribbonUI;
+                System.Diagnostics.Debug.WriteLine("Ribbon_Load completed successfully");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ribbon_Load failed: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Ribbon_Load exception type: {ex.GetType().Name}");
+                System.Diagnostics.Debug.WriteLine($"Ribbon_Load stack trace: {ex.StackTrace}");
+            }
         }
 
         /// <summary>

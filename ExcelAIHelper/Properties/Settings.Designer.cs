@@ -34,5 +34,65 @@ namespace ExcelAIHelper.Properties {
                 this["ApiKey"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.deepseek.com")]
+        public string ApiEndpoint {
+            get {
+                return ((string)(this["ApiEndpoint"]));
+            }
+            set {
+                this["ApiEndpoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("deepseek-chat")]
+        public string SelectedModel {
+            get {
+                return ((string)(this["SelectedModel"]));
+            }
+            set {
+                this["SelectedModel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.7")]
+        public double Temperature {
+            get {
+                return ((double)(this["Temperature"]));
+            }
+            set {
+                this["Temperature"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2048")]
+        public int MaxTokens {
+            get {
+                return ((int)(this["MaxTokens"]));
+            }
+            set {
+                this["MaxTokens"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("VSTO")]
+        public string ExecutionMode {
+            get {
+                return ((string)(this["ExecutionMode"]));
+            }
+            set {
+                this["ExecutionMode"] = value;
+            }
+        }
     }
 }

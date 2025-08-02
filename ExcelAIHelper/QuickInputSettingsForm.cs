@@ -14,7 +14,6 @@ namespace ExcelAIHelper
         private DataGridView dgvCustomMappings;
         private Timer selectionTimer;
         private Excel.AppEvents_SheetSelectionChangeEventHandler _selectionChangeHandler;
-        private bool _isActive = false;
         private Dictionary<string, string> _customMappings = new Dictionary<string, string>();
         private Label lblStatus;
         private Label descLabel;

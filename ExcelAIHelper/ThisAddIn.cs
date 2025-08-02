@@ -21,6 +21,8 @@ namespace ExcelAIHelper
         {
             try
             {
+                System.Diagnostics.Debug.WriteLine("ThisAddIn_Startup called");
+                
                 // Configure SSL/TLS settings globally for the application
                 // This is required for HTTPS connections to modern APIs
                 System.Net.ServicePointManager.SecurityProtocol = 
@@ -34,18 +36,44 @@ namespace ExcelAIHelper
                 System.Diagnostics.Debug.WriteLine("SSL/TLS configuration applied: " + 
                     System.Net.ServicePointManager.SecurityProtocol.ToString());
                 
-                // Create chat pane
+                // 延迟初始化UI组件，避免在Excel完全启动前创建复杂控件
+                System.Windows.Forms.Timer startupTimer = new System.Windows.Forms.Timer();
+                startupTimer.Interval = 1000; // 1秒延迟
+                startupTimer.Tick += (s, args) =>
+                {
+                    startupTimer.Stop();
+                    startupTimer.Dispose();
+                    DelayedInitialization();
+                };
+                startupTimer.Start();
+                
+                System.Diagnostics.Debug.WriteLine("Excel AI Helper startup initiated");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ThisAddIn_Startup failed: {ex}");
+                // 不显示MessageBox，避免阻塞Excel启动
+            }
+        }
+        
+        private void DelayedInitialization()
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("DelayedInitialization called");
+                
+                // Create chat pane with error handling
                 var chatControl = new ChatPaneControl();
                 ChatPane = this.CustomTaskPanes.Add(chatControl, "AI Chat");
-                ChatPane.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionRight; // 右侧
-                ChatPane.Visible = false;   // 初始隐藏
+                ChatPane.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionRight;
+                ChatPane.Visible = false;
                 
                 System.Diagnostics.Debug.WriteLine("Excel AI Helper started successfully");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"启动失败: {ex.Message}", "Excel AI Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Diagnostics.Debug.WriteLine($"Failed to start Excel AI Helper: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"DelayedInitialization failed: {ex}");
+                // 如果延迟初始化也失败，记录错误但不阻塞Excel
             }
         }
 

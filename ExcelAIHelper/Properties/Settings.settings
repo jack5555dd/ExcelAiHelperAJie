@@ -19,5 +19,8 @@
     <Setting Name="MaxTokens" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2048</Value>
     </Setting>
+    <Setting Name="ExecutionMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VSTO</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -157,6 +157,10 @@
           <Private>False</Private>
           <EmbedInteropTypes>true</EmbedInteropTypes>
         </Reference>
+        <Reference Include="Microsoft.Vbe.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+          <Private>False</Private>
+          <EmbedInteropTypes>true</EmbedInteropTypes>
+        </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
@@ -174,6 +178,15 @@
           <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
           <VersionMajor>1</VersionMajor>
           <VersionMinor>8</VersionMinor>
+          <Lcid>0</Lcid>
+          <WrapperTool>tlbimp</WrapperTool>
+          <Isolated>False</Isolated>
+          <EmbedInteropTypes>true</EmbedInteropTypes>
+        </COMReference>
+        <COMReference Include="Microsoft.Vbe.Interop">
+          <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+          <VersionMajor>5</VersionMajor>
+          <VersionMinor>3</VersionMinor>
           <Lcid>0</Lcid>
           <WrapperTool>tlbimp</WrapperTool>
           <Isolated>False</Isolated>
@@ -254,6 +267,14 @@
     <Compile Include="Services\OperationDispatcher.cs" />
     <Compile Include="Services\PromptBuilder.cs" />
     <Compile Include="Services\CommandExecutionEngine.cs" />
+    <Compile Include="Services\ExecutionModeManager.cs" />
+    <Compile Include="Services\VbaSecurityScanner.cs" />
+    <Compile Include="Services\VbaInjectionEngine.cs" />
+    <Compile Include="Services\VbaPromptBuilder.cs" />
+    <Compile Include="Services\VbaDiagnostics.cs" />
+    <Compile Include="VbePermissionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SpotlightManager.cs" />
     <Compile Include="Ribbon1.cs">
       <SubType>Component</SubType>
