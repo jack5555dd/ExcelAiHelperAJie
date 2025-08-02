@@ -103,7 +103,13 @@ namespace ExcelAIHelper
                     return;
                 }
 
-                // Get Excel application from ThisAddIn
+                // 使用兼容性管理器检测应用程序类型
+                var appType = ApplicationCompatibilityManager.CurrentApplicationType;
+                var appName = ApplicationCompatibilityManager.GetApplicationDisplayName();
+                
+                System.Diagnostics.Debug.WriteLine($"Detected application: {appName} ({appType})");
+                
+                // Get Excel application from ThisAddIn (兼容Microsoft Excel和WPS)
                 Excel.Application excelApp = null;
                 try
                 {
@@ -122,11 +128,25 @@ namespace ExcelAIHelper
                     return;
                 }
                 
-                // Initialize services
+                // Initialize services with compatibility layer
                 try
                 {
                     _aiClient = new DeepSeekClient();
-                    _operationEngine = new ExcelOperationEngine(excelApp);
+                    
+                    // 使用兼容性层初始化服务
+                    if (ApplicationCompatibilityManager.IsWpsSpreadsheets)
+                    {
+                        // WPS特定初始化
+                        System.Diagnostics.Debug.WriteLine("Initializing services for WPS Spreadsheets");
+                        _operationEngine = new ExcelOperationEngine(excelApp); // 保持向后兼容
+                    }
+                    else
+                    {
+                        // Microsoft Excel初始化
+                        System.Diagnostics.Debug.WriteLine("Initializing services for Microsoft Excel");
+                        _operationEngine = new ExcelOperationEngine(excelApp);
+                    }
+                    
                     _contextManager = new ContextManager(excelApp, _operationEngine);
                     _promptBuilder = new PromptBuilder(_contextManager);
                     _instructionParser = new InstructionParser();
@@ -142,8 +162,14 @@ namespace ExcelAIHelper
                     
                     System.Diagnostics.Debug.WriteLine("All services initialized successfully");
                     
-                    AppendToChatHistory("系统", "✅ Excel AI助手已启动，支持自然语言操作Excel表格。", Color.Green);
+                    AppendToChatHistory("系统", $"✅ Excel AI助手已启动，当前运行在 {appName}。", Color.Green);
                     AppendToChatHistory("系统", "💡 提示：您可以说\"在A1输入100\"、\"给选中区域设置红色背景\"等。", Color.Gray);
+                    
+                    // 显示兼容性信息
+                    if (ApplicationCompatibilityManager.IsWpsSpreadsheets)
+                    {
+                        AppendToChatHistory("系统", "🔧 WPS表格兼容模式已启用，支持大部分Excel功能。", Color.Blue);
+                    }
                     
                     // 延迟检查VBA状态，避免阻塞主要功能
                     CheckVbaStatusAsync();

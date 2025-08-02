@@ -192,16 +192,6 @@
           <Isolated>False</Isolated>
           <EmbedInteropTypes>true</EmbedInteropTypes>
         </COMReference>
-        <!-- WPS Office COM References -->
-        <COMReference Include="KingsoftOfficeLib" Condition="Exists('$(ProgramFiles)\Kingsoft\WPS Office\office6\et.exe') Or Exists('$(ProgramFiles(x86))\Kingsoft\WPS Office\office6\et.exe')">
-          <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-          <VersionMajor>1</VersionMajor>
-          <VersionMinor>8</VersionMinor>
-          <Lcid>0</Lcid>
-          <WrapperTool>tlbimp</WrapperTool>
-          <Isolated>False</Isolated>
-          <EmbedInteropTypes>true</EmbedInteropTypes>
-        </COMReference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -269,21 +259,14 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Services\ApplicationCompatibilityManager.cs" />
-    <Compile Include="Services\CompatibleExcelOperationEngine.cs" />
     <Compile Include="Services\ContextManager.cs" />
     <Compile Include="Services\DeepSeekClient.cs" />
-    <Compile Include="Services\ExcelApplicationFactory.cs" />
     <Compile Include="Services\ExcelOperationEngine.cs" />
-    <Compile Include="Services\IExcelApplication.cs" />
     <Compile Include="Services\InstructionParser.cs" />
-    <Compile Include="Services\MicrosoftExcelApplication.cs" />
     <Compile Include="Services\NetworkDiagnostics.cs" />
     <Compile Include="Services\OperationDispatcher.cs" />
     <Compile Include="Services\PromptBuilder.cs" />
     <Compile Include="Services\CommandExecutionEngine.cs" />
-    <Compile Include="Services\CompatibleCommandExecutionEngine.cs" />
-    <Compile Include="Services\WpsExcelApplication.cs" />
     <Compile Include="Services\ExecutionModeManager.cs" />
     <Compile Include="Services\VbaSecurityScanner.cs" />
     <Compile Include="Services\VbaInjectionEngine.cs" />

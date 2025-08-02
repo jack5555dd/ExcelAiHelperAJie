@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+
+; WPS表格 COM加载项注册
+; 注意：请根据实际的DLL路径和GUID修改以下内容
+
+[HKEY_CURRENT_USER\Software\Kingsoft\Office\6.0\Common\AddIns\ExcelAIHelper.AiRibbon]
+"LoadBehavior"=dword:00000003
+"FriendlyName"="Excel AI Helper for WPS"
+"Description"="AI-powered Excel assistant compatible with WPS Spreadsheets"
+
+; 备用注册路径（如果上面的路径不工作）
+[HKEY_LOCAL_MACHINE\Software\Kingsoft\Office\6.0\Common\AddIns\ExcelAIHelper.AiRibbon]
+"LoadBehavior"=dword:00000003
+"FriendlyName"="Excel AI Helper for WPS"
+"Description"="AI-powered Excel assistant compatible with WPS Spreadsheets"
+
+; WPS ET (表格) 特定注册
+[HKEY_CURRENT_USER\Software\Kingsoft\Office\6.0\ET\AddIns\ExcelAIHelper.AiRibbon]
+"LoadBehavior"=dword:00000003
+"FriendlyName"="Excel AI Helper for WPS"
+"Description"="AI-powered Excel assistant compatible with WPS Spreadsheets"
