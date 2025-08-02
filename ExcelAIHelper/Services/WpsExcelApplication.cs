@@ -11,6 +11,7 @@ namespace ExcelAIHelper.Services
     public class WpsExcelApplication : IExcelApplication
     {
         private dynamic _application;
+        private bool _isInitialized = false;
 
         public WpsExcelApplication()
         {
@@ -84,6 +85,11 @@ namespace ExcelAIHelper.Services
         }
 
         public object Application => _application;
+
+        /// <summary>
+        /// 获取WPS应用程序是否已成功初始化
+        /// </summary>
+        public bool IsInitialized => _isInitialized;
 
         public object ActiveWorkbook
         {

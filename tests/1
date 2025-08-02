@@ -1,77 +1,57 @@
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Office.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Office.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\mscorlib.resources\v4.0_4.0.0.0_zh-Hans_b77a5c561934e089\mscorlib.resources.dll”。模块已生成，不包含符号。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Hosting\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Hosting.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.ServerDocument\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.ServerDocument.dll”。包含/排除设置已禁用符号加载。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Office.Runtime.resources\v4.0_10.0.0.0_zh-Hans_b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Office.Runtime.resources.dll”。模块已生成，不包含符号。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Deployment\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Deployment.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Security\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Security.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Deployment.resources\v4.0_4.0.0.0_zh-Hans_b03f5f7f11d50a3a\System.Deployment.resources.dll”。模块已生成，不包含符号。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-线程 'InstallerThread' (14896) 已退出，返回值为 0 (0x0)。
-“excel.exe”(CLR v4.0.30319: Domain 2): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Office.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Office.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Security\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Security.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Hosting\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Hosting.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Deployment\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Deployment.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.ServerDocument\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.ServerDocument.dll”。包含/排除设置已禁用符号加载。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Excel.Implementation\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Excel.Implementation.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Common.Implementation\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Common.Implementation.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Common\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Common.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Excel\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Excel.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\7bb5f025\eb04d3ca_6403dc01\ExcelAIHelper.dll”。已加载符号。
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\981432df\ebed4ba7_2301dc01\Microsoft.Office.Tools.Common.v4.0.Utilities.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: DefaultDomain): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms.resources\v4.0_4.0.0.0_zh-Hans_b77a5c561934e089\System.Windows.Forms.resources.dll”。模块已生成，不包含符号。
-线程 'InstallerThread' (21412) 已退出，返回值为 0 (0x0)。
-“excel.exe”(CLR v4.0.30319: Domain 3): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Office.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Office.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Security\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Security.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Hosting\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Hosting.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.Runtime\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.Runtime.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Deployment\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Deployment.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Tools.Applications.ServerDocument\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Tools.Applications.ServerDocument.dll”。包含/排除设置已禁用符号加载。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Excel.Implementation\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Excel.Implementation.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Common.Implementation\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Common.Implementation.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Common\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Common.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\a9990cbc\00157717_05f2db01\HyExcelAI.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\8dbae237\009cd72f_7d1cda01\Microsoft.Office.Tools.Common.v4.0.Utilities.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Office.Tools.Excel\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.Office.Tools.Excel.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
-“excel.exe”(CLR v4.0.30319: HyExcelAI.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\4019fb3d\002021cc_8cf1db01\HyExcelAI.resources.dll”。模块已生成，不包含符号。
-GetCustomUI called with Microsoft.Excel.Workbook
-Ribbon_Load called
-SSL/TLS configuration applied: Tls, Tls11, Tls12
-[ExecutionModeManager] 从配置加载模式: VSTO
-[ExecutionModeManager] 找到VBE访问权限设置 (Office 16.0)
-[ExecutionModeManager] 开始访问VBE对象...
-[ExecutionModeManager] VBE对象获取成功
-[ExecutionModeManager] ActiveVBProject为null
-[ExecutionModeManager] 初始化完成，当前模式: VSTO, VBA可用: False
-引发的异常:“System.NullReferenceException”(位于 ExcelAIHelper.dll 中)
-未将对象引用设置到对象的实例。
+编译交给我使用vs，编译有错：重新生成开始于 15:20...
 
-“excel.exe”(CLR v4.0.30319: ExcelAIHelper.vsto|vstolocal): 已加载“C:\Users\123\AppData\Local\assembly\dl3\HNQLVJ10.LRT\TDQEKHNE.G0V\21e877ce\f786a448_80f8db01\Microsoft.VisualStudio.Debugger.Runtime.Desktop.dll”。已跳过加载符号。模块进行了优化，并且调试器选项“仅我的代码”已启用。
+1>------ 已启动全部重新生成: 项目: ExcelAIHelper, 配置: Debug Any CPU ------
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\VbaInjectionEngine.cs(305,47,305,68): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\PromptBuilder.cs(121,35,121,55): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CommandExecutionEngine.cs(288,28,288,50): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CommandExecutionEngine.cs(305,28,305,53): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CommandExecutionEngine.cs(322,28,322,50): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CommandExecutionEngine.cs(334,28,334,53): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CompatibleCommandExecutionEngine.cs(89,17,89,28): error CS0117: “CommandResult”未包含“CommandType”的定义
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\CommandExecutionEngine.cs(402,41,402,60): warning CS1998: 此异步方法缺少 "await" 运算符，将以同步方式运行。请考虑使用 "await" 运算符等待非阻止的 API 调用，或者使用 "await Task.Run(...)" 在后台线程上执行占用大量 CPU 的工作。
+
+1>J:\1AWorkZR\VSTOExcelDev3\ExcelAIHelper\Services\WpsExcelApplication.cs(14,22,14,36): warning CS0414: 字段“WpsExcelApplication._isInitialized”已被赋值，但从未使用过它的值
+
+========== 全部重新生成: 0 成功，1 失败，0 已跳过 ==========
+
+========== 重新生成 于 15:20 完成，耗时 00.585 秒 ==========
+
+
+
+Kiro
+我看到编译错误，主要问题是CommandResult类缺少CommandType属性。让我先检查CommandResult类的定义，然后修复这个问题。
+
+Searched workspace
+查找CommandResult类的定义
+让我查看CommandResult类的完整定义：
+
+Read file(s)
+
+CommandExecutionEngine.cs 515 - 541
+让我查看更多的CommandResult定义：
+
+Read file(s)
+
+CommandExecutionEngine.cs 540 - 561
+现在我看到问题了。CommandResult类没有CommandType属性，但我在CompatibleCommandExecutionEngine中使用了它。让我修复这个问题：
+
+Accepted edits to
+
+CompatibleCommandExecutionEngine.cs
+
+
+现在让我修复WpsExcelApplication中未使用的字段警告：
+
+Accepted edits to
+
+WpsExcelApplication.cs
+
+
